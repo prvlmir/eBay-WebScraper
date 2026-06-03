@@ -1,0 +1,16 @@
+{
+    "site_name": "eBay",
+    "base_url": "https://www.ebay.com",
+    "search_url_template": "https://www.ebay.com/sch/i.html?_nkw={query}&_pgn={page}",
+    "pagination_limit": 2,
+    "selectors": {
+        "listing_links": "a[href*='/itm/']",
+        "product": {
+            "title": "//h1[contains(@class, 'x-item-title__mainTitle')]/span",
+            "price": "//div[@class='x-price-primary']/span",
+            "seller_name": "//div[contains(@class, 'x-sellercard-atf__info')]//a/span",
+            "seller_link": "//div[contains(@class, 'x-sellercard-atf__info')]//a",
+            "images": "//div[contains(@class, 'ux-image-carousel-item')]//img"
+        }
+    }
+}

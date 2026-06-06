@@ -1,12 +1,13 @@
-# eBay Web Scraper
+# Universal Web Scraper (eBay, Alibaba, OLX)
 
-A simple and effective Python web scraper built with Selenium to extract product data from eBay. It uses `undetected-chromedriver` to bypass bot protection and saves the results in a clean CSV file.
+A simple and effective multi-platform Python web scraper built with Selenium. It extracts product data from major e-commerce sites like eBay, Alibaba, and OLX. It uses `undetected-chromedriver` to bypass bot protection and saves the results in clean CSV files.
 
 ## Features
-- **Anti-Bot Protection:** Bypasses standard eBay blocks and captchas.
-- **Pagination Support:** Automatically navigates through search result pages to collect more items.
-- **CSV Export:** Saves data (Title, Price, Currency, Links, Images) dynamically based on your search query.
-- **Easy Configuration:** Uses a JSON file to store selectors, so you don't need to change the Python code if the website layout changes.
+- **Multi-Platform Support:** Choose which marketplace to scrape (eBay, Alibaba, or OLX) directly from the terminal menu.
+- **Anti-Bot Protection & Smart Safeguards:** Bypasses standard blocks. If a marketplace (like eBay) shows a block on the first page, the scraper automatically pauses for 15 seconds, giving you a chance to manually refresh the page and bypass the system!
+- **Smart Pagination:** Automatically navigates through search result pages and stops smartly when the products run out.
+- **Dynamic CSV Export:** Saves data dynamically based on the target website and your search query (e.g., `ebay_laptops_output.csv` or `alibaba_iphone_output.csv`).
+- **Modular Configuration:** Uses separate JSON files (`ebay.json`, `alibaba.json`, `olx.json`) to store CSS/XPath selectors. You don't need to touch the Python code if a website layout changes.
 
 ## Installation
 
@@ -26,13 +27,14 @@ pip install -r requirements.txt
 1. Run the main script:
 python main.py
 
-2. Enter your search query (for example: `laptops` or `nike`).
-3. The browser will open automatically and start collecting data.
-4. Once finished, find your results in the `data/` folder (e.g., `data/laptops_output.csv`).
+2. Select the target marketplace from the terminal menu (1 for eBay, 2 for OLX, 3 for Alibaba).
+3. Enter your search query (for example: `laptops` or `iphone`).
+4. The browser will open automatically and start collecting data. (If you hit an Anti-Bot block on the first page, just hit F5 in the browser while the script waits).
+5. Once finished, find your results in the `data/` folder.
 
 ## Configuration
 
-If you need to change the CSS/XPath selectors or the number of pages to scrape, just edit the `config/ebay.json` file. 
+If you need to change the selectors, update the website link, or increase the number of pages to scrape, just edit the corresponding file in the `config/` folder (e.g., `config/ebay.json`).
 
 To use a proxy, open `main.py` and update the proxy settings:
 browser_cfg = BrowserConfig(proxy="your_proxy_ip:port")

@@ -1,0 +1,13 @@
+{
+  "search_url_template": "https://www.alibaba.com/trade/search?SearchText={query}&page={page}",
+  "pagination_limit": 100,
+  "selectors": {
+    "listing_links": "a[href*='product']",
+    "product": {
+      "title": "//h1",
+      "price": "//span[contains(@class, 'price') or contains(@class, 'Price')]",
+      "seller_name": "//a[contains(@class, 'company')]",
+      "images": "//img"
+    }
+  }
+}

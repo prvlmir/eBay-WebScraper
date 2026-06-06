@@ -2,7 +2,7 @@
     "site_name": "eBay",
     "base_url": "https://www.ebay.com",
     "search_url_template": "https://www.ebay.com/sch/i.html?_nkw={query}&_pgn={page}",
-    "pagination_limit": 2,
+    "pagination_limit": 100,
     "selectors": {
         "listing_links": "a[href*='/itm/']",
         "product": {

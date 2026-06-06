@@ -32,12 +32,26 @@ def save_to_csv(data, filename):
         print(f"[ERROR] Error saving CSV: {e}", file=sys.stderr)
 
 def main():
-    print("=== Starting eBay Scraper ===")
+    print("=== Starting Universal Web Scraper ===")
     
-    config_path = os.path.join("config", "ebay.json")
+    # Вибір маркетплейсу перед запуском
+    print("Select marketplace:")
+    print("1 - eBay")
+    print("2 - Alibaba")
+    choice = input("Enter number (default is 1): ").strip()
+    
+    if choice == "2":
+        config_path = os.path.join("config", "alibaba.json")
+        print("[INFO] Alibaba configuration loaded.")
+        site_prefix = "alibaba"
+    else:
+        config_path = os.path.join("config", "ebay.json")
+        print("[INFO] eBay configuration loaded.")
+        site_prefix = "ebay"
+        
     config = load_config(config_path)
     
-    # Proxy configuration (e.g., "192.168.1.1:8080")
+    # Proxy configuration
     browser_cfg = BrowserConfig(proxy=None) 
     driver = browser_cfg.get_driver()
     
@@ -46,11 +60,11 @@ def main():
         return
 
     try:
-        search_query = input("Enter search query (e.g., 'laptops' or 'nike'): ")
+        search_query = input("Enter search query (e.g., 'laptops' or 'iphone'): ")
         if not search_query.strip():
-            search_query = "nike"
+            search_query = "iphone"
             
-        # Phase 1
+        # Phase 1: Collect Links
         page_scraper = PageScraper(driver, config)
         product_links = page_scraper.get_product_links(search_query)
         
@@ -58,15 +72,14 @@ def main():
             print("[WARNING] No links found. Exiting.")
             return
             
-        # Phase 2
+        # Phase 2: Extract Data
         product_scraper = ProductScraper(driver, config)
         scraped_data = product_scraper.scrape_products(product_links)
         
-        # Save results
+        # Save results (використовуємо site_prefix)
         safe_query = search_query.strip().replace(" ", "_").lower()
-        csv_filename = f"{safe_query}_output.csv"
+        csv_filename = f"{site_prefix}_{safe_query}_output.csv"
         csv_path = os.path.join("data", csv_filename)
-        # ----------------------------------------
 
         save_to_csv(scraped_data, csv_path)
         
@@ -74,6 +87,5 @@ def main():
         print("\n[INFO] Closing browser...")
         driver.quit()
         print("=== Execution Finished ===")
-
 if __name__ == "__main__":
     main()

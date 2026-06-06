@@ -18,6 +18,10 @@ class BrowserConfig:
         #Set default Window Size
         chrome_options.add_argument("window-size=1920,1080")
         chrome_options.add_argument("--disable-infobars")
+        chrome_options.page_load_strategy = 'eager' # Не чекаємо повного завантаження всіх скриптів
+        chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+        chrome_options.add_argument("--ignore-certificate-errors")
+        chrome_options.add_argument(f"--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36")
         
         
         #Proxy support

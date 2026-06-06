@@ -3,7 +3,7 @@
 A simple and effective multi-platform Python web scraper built with Selenium. It extracts product data from major e-commerce sites like eBay, Alibaba, and OLX. It uses `undetected-chromedriver` to bypass bot protection and saves the results in clean CSV files.
 
 ## Features
-- **Multi-Platform Support:** Choose which marketplace to scrape (eBay, Alibaba, or OLX) directly from the terminal menu.
+- **Multi-Platform Support:** Choose which marketplace to scrape (eBay or Alibaba) directly from the terminal menu.
 - **Anti-Bot Protection & Smart Safeguards:** Bypasses standard blocks. If a marketplace (like eBay) shows a block on the first page, the scraper automatically pauses for 15 seconds, giving you a chance to manually refresh the page and bypass the system!
 - **Smart Pagination:** Automatically navigates through search result pages and stops smartly when the products run out.
 - **Dynamic CSV Export:** Saves data dynamically based on the target website and your search query (e.g., `ebay_laptops_output.csv` or `alibaba_iphone_output.csv`).
